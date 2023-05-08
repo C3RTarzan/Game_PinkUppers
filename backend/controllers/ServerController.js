@@ -1,12 +1,7 @@
 const User = require("../models/user");
 
-const jwt = require('jsonwebtoken');
-
 const getToken = require('../helpers/get-token');
 const getUserByToken = require("../helpers/get-user-by-token");
-
-//Token key
-const TOKEN_KEY = process.env.TOKEN_KEY
 
 
 module.exports = class ServerController{

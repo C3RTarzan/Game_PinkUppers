@@ -26,7 +26,7 @@ module.exports = class UserController{
                     res.status(422).json({message: 'Falha ao tentar logar'});
                     return;
                 }
-                await createUserToken(user, req, res);  
+                await createUserToken(userExists, req, res);  
                 return 
             }
 
