@@ -1,0 +1,22 @@
+.message{
+    align-items: center;
+    justify-content: center;
+    span{
+        display: flex;
+        //border-radius: 5px;    
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;   
+        margin-bottom: 10px; 
+        //padding: 15px 50px;
+        //background-color: beige;
+    }
+    .error{       
+        color: rgb(255, 104, 104);
+        //background-color: rgba(255, 0, 0, 0.8);
+    }
+    .success{
+        color: rgb(40, 179, 40);
+        //background-color: rgba(37, 168, 77, 0.1);
+    }
+}

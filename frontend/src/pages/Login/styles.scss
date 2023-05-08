@@ -1,0 +1,33 @@
+@import "/src/assets/scss/color";
+.Login{
+    h1{
+        color: white;
+        margin: 10px;
+    }
+    .AccountLogin{
+        color: rgba(255, 255, 255, 0.6);
+        margin: 5px 0;
+        a{
+            color: white;
+        }
+    }
+    .LoginGoogle{
+        margin-bottom: 20px;
+        align-items: center;
+        justify-content: center;
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(255, 255, 255);
+            padding: 10px 30px;
+            border-radius: 5px;
+            color: rgba(0, 0, 0, 0.7);
+            img{
+                margin-right: 5px;
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
+}

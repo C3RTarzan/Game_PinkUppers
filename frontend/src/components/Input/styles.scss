@@ -1,0 +1,36 @@
+@import "/src/assets/scss/color";
+.Form{
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    padding: 10px;
+    span{
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 500;
+        opacity: .8;
+        margin: 0 0 5px 2px;
+    }
+    input{
+        height: 38px;
+        border: none;
+        border-radius: 3px;
+        padding: 0 10px;
+        font-size: 17px;
+        border: solid 0.1px rgb(163, 163, 163);
+    }
+    input[type=submit]{
+        border: none;
+        box-shadow: 0 2px 2px black;
+        border-radius: 5px;
+        margin: 10px 0 20px 0;
+        cursor: pointer;
+        background-color: $corverde;
+        font-weight: 600;
+        color: white;
+        height: 38px;
+        transition: .5s;
+    }
+    input[type=submit]:hover{
+        background-color: #1f8136;
+    }
+}

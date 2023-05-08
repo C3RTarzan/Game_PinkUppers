@@ -1,0 +1,27 @@
+@import "/src/assets/scss/color";
+
+header{
+    background-color: $dark2;
+    .Logo{
+        width: 50%;
+    }
+    .button{
+        width: 50%;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 50px;
+        a{
+            display: flex;  
+            cursor: pointer;     
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            svg{
+                color: white;
+                margin-right: 10px;
+                font-size: 40px;
+            }
+        }
+    }
+}
