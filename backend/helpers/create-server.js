@@ -1,15 +1,9 @@
 const Server = require("../models/Server");
 
-const createServerUser = async(user, req, res, type) => {
+const createServer = async(user, req, res, type) => {
     var check = true
     let ip
 
-    //check primary server
-    const checkUserServer= await Server.findOne({userId: user._id, type: 1})
-    if(checkUserServer){
-        return
-    }
-    
     //create ip
     function createIp(){
         let ip1 = Math.floor(Math.random() * 256)
@@ -103,7 +97,7 @@ const createServerUser = async(user, req, res, type) => {
             Internet: 1
         },
         title: login,
-        state: 0
+        state: 1
         
     })
     try {
@@ -114,4 +108,4 @@ const createServerUser = async(user, req, res, type) => {
     }
 }
 
-module.exports = createServerUser
+module.exports = createServer

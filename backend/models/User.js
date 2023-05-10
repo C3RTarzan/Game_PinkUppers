@@ -19,11 +19,7 @@ const User = mongoose.model(
         office:{
             type: String,
             required: true
-        },  
-        ip:{
-            type: String,
-            required: false
-        },    
+        },     
         ipLogged:{
             type: String,
             required: false

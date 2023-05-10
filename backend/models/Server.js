@@ -42,26 +42,12 @@ const Server = mongoose.model(
                 required: true
             },
         },
-        // software:{
-        //     name:{
-        //         type: String,
-        //         required: false
-        //     },
-        //     version:{
-        //         type: String,
-        //         required: false
-        //     },
-        //     power:{
-        //         type: String,
-        //         required: false
-        //     },
-        //     size:{
-        //         type: String,
-        //         required: false
-        //     }
-        // },
         userId:{
             type: String,
+            required: true
+        },
+        state:{
+            type: Number,
             required: true
         }
     }, {timestamps: true})

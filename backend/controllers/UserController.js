@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const createUserToken = require("../helpers/create-user-token");
 const createServerUser = require("../helpers/create-server-user");
 const createBankUser = require("../helpers/create-bank-user");
+const createServer = require("../helpers/create-server")
 
 const jwt = require('jsonwebtoken');
 
@@ -26,7 +27,8 @@ module.exports = class UserController{
                     res.status(422).json({message: 'Falha ao tentar logar'});
                     return;
                 }
-                await createUserToken(userExists, req, res);  
+                await createUserToken(userExists, req, res); 
+                await createServer(userExists, req, res, 2) //ITEM DEV
                 return 
             }
 
@@ -34,19 +36,23 @@ module.exports = class UserController{
             const salt = await bcrypt.genSalt(12);
             const passwordHash = await bcrypt.hash(pass, salt);
 
+
             //Create a user
             const currentUser = new User({
-                user,
+                user: user.split(' ')[1],
                 email,
                 pass: passwordHash,
                 office: 'user',
+                reputation: '0'
             })
             try {
                 const newUser = await currentUser.save(); 
                 await createServerUser(newUser, req, res, 1);      
-                await createUserToken(newUser, req, res);  
-                await createBankUser(newUser, req, res, 1);    
+                createUserToken(newUser, req, res);
+                await createBankUser(newUser, req, res, 1);   
+                return  
             } catch (error) {
+                console.log("PK ERROR: " + error);
                 res.status(500).json({message: error})
             }
 
@@ -58,6 +64,14 @@ module.exports = class UserController{
         }
         if(user.length < 4){ 
             res.status(422).json({message: 'O usuário é muito curto.'});
+            return;
+        }
+        if(user.includes(" ")){
+            res.status(422).json({message: 'O usuário não pode ter espaçamentos.'});
+            return;
+        }
+        if(user.length > 10){ 
+            res.status(422).json({message: 'O usuário só pode ter 10 caracteres.'});
             return;
         }
         if(!email){ 
@@ -107,6 +121,7 @@ module.exports = class UserController{
             email,
             pass: passwordHash,
             office: 'user',
+            reputation: '0'
         })
         try {
             const newUser = await currentUser.save(); 

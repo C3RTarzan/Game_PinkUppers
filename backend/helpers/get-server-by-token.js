@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken')
 const User = require("../models/user");
+const Server = require('../models/Server');
 
 const TOKEN_KEY = process.env.TOKEN_KEY
 
 //get user by jwt token
 
-module.exports = getUserByToken = async (token) =>{
+module.exports = getServerByToken = async (token) =>{
 
     //verification
     
@@ -17,10 +18,9 @@ module.exports = getUserByToken = async (token) =>{
     try {    
         const decoded = jwt.verify(token, TOKEN_KEY);
         const userId = decoded.id;
-        const user = await User.findOne({_id: userId});
-        user.pass = undefined
+        const server = await Server.find({userId: userId});
         
-        return user;
+        return server;
     } catch (error) {
         res.status(422).json({message: 'Token invalido'});
     }
