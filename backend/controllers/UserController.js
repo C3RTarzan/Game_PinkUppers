@@ -17,6 +17,8 @@ module.exports = class UserController{
 
         const {user, pass, confPass, email, localId} = req.body
         if(localId){
+            let userChecked = user
+
             //Check if user exists
             const userExists = await User.findOne({email: email})
             if(userExists){ 
@@ -28,7 +30,7 @@ module.exports = class UserController{
                     return;
                 }
                 await createUserToken(userExists, req, res); 
-                await createServer(userExists, req, res, 2) //ITEM DEV
+                //await createServer(userExists, req, res, 2) //ITEM DEV
                 return 
             }
 
@@ -36,10 +38,12 @@ module.exports = class UserController{
             const salt = await bcrypt.genSalt(12);
             const passwordHash = await bcrypt.hash(pass, salt);
 
-
+            if(user.indexOf(" ") >= 0){
+                userChecked = user.split(' ')[0]
+            }
             //Create a user
             const currentUser = new User({
-                user: user.split(' ')[1],
+                user: userChecked,
                 email,
                 pass: passwordHash,
                 office: 'user',

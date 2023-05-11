@@ -7,6 +7,7 @@ import api from '../../utils/api'
 import userPhone from '../../assets/img/user.png'
 
 import { FaServer } from "react-icons/fa";
+import { Navigate } from 'react-router-dom';
 
 function Root(){
 
@@ -30,16 +31,14 @@ function Root(){
                 })
                 setUser(result.data.user)
                 setServer(result.data.server)
-                setIsLoading(false)
+                setIsLoading(false)    
             } catch(error){
-                console.log("PNK erro: " + error);
+                console.log("PNK erro: " + error); 
             }
         }
         fetchData();
     }, [token])
 
-    
-    
     function state(state){
         if(state === 0 || state === 1){
             return "Online"
@@ -185,7 +184,7 @@ function Root(){
                             <FaServer className={state(item.state)}/>
                         </div>
                         <div className='server-date'>
-                            <span id={item.ip} onClick={copyText} className={state(item.state)}>{item.ip}</span>
+                            <span id={"IP:" + item.ip} onClick={copyText} className={state(item.state)}>{item.ip}</span>
                         </div>
                         <div className='server-upddate'>
                             <span onClick={() => handleMenuClick(item._id)}>{stateServerUpddate(item.state)}</span>

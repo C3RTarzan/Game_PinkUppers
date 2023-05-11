@@ -3,10 +3,12 @@ import useAuth from "../hooks/useAuth";
 
 const Context = createContext()
 
-function UserProvider({children}){
+const UserProvider = ({children}) => {
 
     const {authenticated, register, logout, login, googleAuth} = useAuth()
 
+    localStorage.setItem('Auth', authenticated);
+    
     return(
         <Context.Provider value={{ authenticated, register, logout, login, googleAuth}}>
             {children}
